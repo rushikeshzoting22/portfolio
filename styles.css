@@ -123,6 +123,12 @@ h1, h2, h3, h4, h5, h6 {
 .mb-24 {
     margin-bottom: 24px;
 }
+.success-submit-message,
+.fail-submit-message {
+    display: none;
+    color: green; /* or red for fail */
+}
+
 .btn {
     font-style: normal;
     font-weight: 500;

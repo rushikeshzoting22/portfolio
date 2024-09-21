@@ -15,6 +15,7 @@
     <link href="assets/css/swiper-bundle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/kursor.css">
     <link rel="stylesheet" href="./styles.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <title>Rushikesh Zoting | Portfolio</title>
 </head>
 <body>
@@ -357,7 +358,7 @@
         <div class="container">
             <div class="contact-wrapper">
                 <div class="contact-form">
-                    <form name="contactForm">
+                    <form name="contactForm" id="contactForm">
                         <p class="success-submit-message">Your message has been successfully sent.</p>
                         <p class="fail-submit-message">An error occurred while sending the message.</p>
                         <div class="form-control">
@@ -451,6 +452,44 @@
     <p class="copyright" data-aos="fade-up" data-aos-delay="100">© <span class="year">year</span>  -  Dev<span class="bold"> Rushi</span></p>
 </footer>
 </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function() {
+      emailjs.init("M7QYi243WJZF4_7ed");
+   })();
+</script>
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Get the form values
+        const name = document.querySelector('input[name="name"]').value;
+        const email = document.querySelector('input[name="email"]').value;
+        const message = document.querySelector('textarea[name="message"]').value;
+
+        // Basic validation
+        if (!name || !email || !message) {
+            document.querySelector('.fail-submit-message').style.display = 'block';
+            return;
+        }
+
+        // Prepare the email data
+        const templateParams = {
+            name: name,
+            email: email,
+            message: message
+        };
+
+        // Send email using EmailJS
+        emailjs.send('service_o9bpvck', 'template_6uo03zn', templateParams)
+            .then(function(response) {
+                document.querySelector('.success-submit-message').style.display = 'block';
+            }, function(error) {
+                document.querySelector('.fail-submit-message').style.display = 'block';
+            });
+    });
+</script>
+
 <script src="assets/js/aos.js"></script>
 <script src="assets/js/swiper-bundle.min.js"></script>
 <script src="assets/js/kursor.js"></script>
